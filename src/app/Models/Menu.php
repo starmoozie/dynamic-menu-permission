@@ -90,9 +90,9 @@ class Menu extends Model
         return $this->hasMany('Starmoozie\DynamicPermission\app\Models\Menu', 'parent_id');
     }
 
-    public function permissions()
+    public function permission()
     {
-        return $this->belongsToMany('Starmoozie\DynamicPermission\app\Models\Permission', 'menu_permission', 'menu_id', 'permission_id')
+        return $this->belongsToMany(Permission::class)
             ->withPivot(['alias']);
     }
 

@@ -86,24 +86,20 @@ class LevelCrudController extends CrudController
 
             [
                 'name'       => 'nama',
-                'label'      => __('dynamic_trans::label.route'),
-                'wrapper'    => ['class' => 'form-group col-md-4'],
-                'attributes' => ['required' => 'required', 'pattern' => '[a-z#]+', 'maxlength' => 10],
-                'hint'       => __('dynamic_trans::hint.route_menu')
+                'label'      => __('dynamic_trans::label.name'),
+                'attributes' => ['required' => 'required', 'pattern' => '[a-z A-Z]+', 'maxlength' => 10],
             ],
             [
-                'label'       => "Cities", // Table column heading
+                'label'       => __('dynamic_trans::label.permissions'), // Table column heading
                 'type'        => "select2_from_ajax_multiple",
                 'name'        => 'menuPermission', // a unique identifier (usually the method that defines the relationship in your Model) 
                 'entity'      => 'menuPermission', // the method that defines the relationship in your Model
                 'attribute'   => "alias", // foreign key attribute that is shown to user
                 'data_source' => starmoozie_url("api/menu-permission"), // url to controller search function (with /{id} should return model)
                 'pivot'       => true, // on create&update, do you need to add/delete pivot table entries?
-            
-                // OPTIONAL
-                'delay' => 500, // the minimum amount of time between ajax requests when searching in the field
+                'delay'                => 100, // the minimum amount of time between ajax requests when searching in the field
                 'model'                => "Starmoozie\DynamicPermission\app\Models\MenuPermission", // foreign key model
-                'placeholder'          => "Select a city", // placeholder for the select
+                'placeholder'          => __('dynamic_trans::placeholder.select_permissions'), // placeholder for the select
                 'minimum_input_length' => 0,
             ],
         ]);

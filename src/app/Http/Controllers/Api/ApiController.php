@@ -5,6 +5,7 @@ namespace Starmoozie\DynamicPermission\app\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Starmoozie\DynamicPermission\app\Models\Menu;
 use Starmoozie\DynamicPermission\app\Models\Permission;
 use Starmoozie\DynamicPermission\app\Models\MenuPermission;
 
@@ -17,7 +18,7 @@ class ApiController extends Controller
 
         if ($search)
         {
-            $results = $results->where('name', 'LIKE', '%'.$search.'%');
+            $results = $results->where('nama', 'LIKE', '%'.$search.'%');
         }
 
         return $results->paginate(10);
@@ -33,6 +34,19 @@ class ApiController extends Controller
         if ($search)
         {
             $results = $results->where('alias', 'LIKE', '%'.$search.'%');
+        }
+
+        return $results->paginate(10);
+    }
+
+    public function menuParent(Request $request)
+    {
+        $search  = $request->input('q');
+        $results = Menu::query();
+
+        if ($search)
+        {
+            $results = $results->where('nama', 'LIKE', '%'.$search.'%');
         }
 
         return $results->paginate(10);

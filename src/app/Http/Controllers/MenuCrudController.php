@@ -92,13 +92,13 @@ class MenuCrudController extends CrudController
     private function updatePivot()
     {
         $entry      = $this->crud->entry;
-        $permission = Permission::selectIdNama(CRUD::getRequest()->permissions)->get();
+        $permission = Permission::selectIdNama(CRUD::getRequest()->permission)->get();
 
         foreach ($permission as $key => $value) {
             $pivot[$value->id] = ['alias' => $entry->nama.'-'.$value->nama];
         }
 
-        return $entry->permissions()->sync($pivot);
+        return $entry->permission()->sync($pivot);
     }
 
     protected function setupReorderOperation()
@@ -153,7 +153,7 @@ class MenuCrudController extends CrudController
                 'type'                 => 'select2_from_ajax',
                 'entity'               => 'parent',
                 'attribute'            => "nama",
-                'data_source'          => starmoozie_url("api/parent-menu"),
+                'data_source'          => starmoozie_url("api/menu-parent"),
                 'placeholder'          => __('dynamic_trans::placeholder.select_parent'),
                 'minimum_input_length' => 0,
                 'hint'                 => __('dynamic_trans::hint.parent_menu')
@@ -168,13 +168,13 @@ class MenuCrudController extends CrudController
             [
                 'label'                => __('dynamic_trans::label.permissions'),
                 'type'                 => "select2_from_ajax_multiple",
-                'name'                 => 'permissions', 
-                'entity'               => 'permissions',
+                'name'                 => 'permission', 
+                'entity'               => 'permission',
                 'attribute'            => "nama",
                 'data_source'          => starmoozie_url("api/permission"),
                 'pivot'                => true,
                 'model'                => "Starmoozie\DynamicPermission\app\Models\Permission",
-                'placeholder'          => "Select a city",
+                'placeholder'          => __('dynamic_trans::placeholder.select_permissions'),
                 'minimum_input_length' => 0,
             ],
             [

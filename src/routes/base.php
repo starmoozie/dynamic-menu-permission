@@ -14,5 +14,6 @@ Route::group([
     Route::crud('level', 'LevelCrudController');
     
     Route::get('api/permission', 'Api\ApiController@permission');
+    Route::get('api/menu-parent', 'Api\ApiController@menuParent');
     Route::get('api/menu-permission', 'Api\ApiController@menuPermission');
 });
