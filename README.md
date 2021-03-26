@@ -29,3 +29,14 @@ Then add the following line to database/seeds/DatabaseSeeder
     ///
 
 ```
+
+## User
+
+``` bash
+
+- root@mail.com
+  rahasi4dong
+- admin@mail.com
+  password
+
+```
