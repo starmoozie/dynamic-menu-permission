@@ -15,7 +15,7 @@ class CreateMenu extends Migration
     {
         Schema::create('menu', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama');
+            $table->string('nama', 30);
             $table->boolean('for_backend')->default(1);
             $table->string('url', 255);
             $table->integer('parent_id')->unsigned()->nullable();

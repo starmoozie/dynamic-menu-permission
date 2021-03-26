@@ -24,9 +24,30 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            // 'name' => 'required|min:5|max:255'
-        ];
+        switch ($this->method()) {
+            case 'POST':
+                return [
+                    'email'    => 'required|email|unique:users,email|max:40',
+                    'nama'     => 'required|max:50|regex:/^[a-zA-Z\s]*$/',
+                    'password' => 'required|confirmed|min:8',
+                ];
+                break;
+
+            case 'PUT':
+
+                $id = $this->get('id') ?? request()->route('id');
+
+                return [
+                    'email'    => 'required|email|max:40|unique:users,email,'.$id,
+                    'nama'     => 'required|regex:/^[a-zA-Z\s]*$/',
+                    'password' => 'confirmed',
+                ];
+                break;
+
+            default:
+                return [];
+                break;
+        }
     }
 
     /**

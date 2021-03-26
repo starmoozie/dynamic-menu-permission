@@ -24,9 +24,26 @@ class PermissionRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            // 'name' => 'required|min:5|max:255'
-        ];
+        switch ($this->method()) {
+            case 'POST':
+                return [
+                    'nama' => 'required|max:20|regex:/^[a-z_]*$/|unique:permission,nama',
+                ];
+                break;
+
+            case 'PUT':
+
+                $id = $this->get('id') ?? request()->route('id');
+
+                return [
+                    'nama' => 'required|max:20|regex:/^[a-z_]*$/|unique:permission,nama,'.$id
+                ];
+                break;
+
+            default:
+                return [];
+                break;
+        }
     }
 
     /**

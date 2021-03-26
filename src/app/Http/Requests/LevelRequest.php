@@ -24,9 +24,26 @@ class LevelRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            // 'name' => 'required|min:5|max:255'
-        ];
+        switch ($this->method()) {
+            case 'POST':
+                return [
+                    'nama' => 'required|max:15|regex:/^[a-zA-Z\s]*$/|unique:level,nama',
+                ];
+                break;
+
+            case 'PUT':
+
+                $id = $this->get('id') ?? request()->route('id');
+
+                return [
+                    'nama' => 'required|regex:/^[a-zA-Z\s]*$/|max:15|unique:level,nama,'.$id,
+                ];
+                break;
+
+            default:
+                return [];
+                break;
+        }
     }
 
     /**
