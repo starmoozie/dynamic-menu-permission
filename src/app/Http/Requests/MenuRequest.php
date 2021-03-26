@@ -24,9 +24,29 @@ class MenuRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            // 'name' => 'required|min:5|max:255'
-        ];
+        switch ($this->method()) {
+            case 'POST':
+                return [
+                    'nama'        => 'required|max:30|regex:/^[a-zA-Z\s]*$/',
+                    'url'         => 'required|max:20|regex:/^[a-z]*$/',
+                    'permissions' => 'required',
+                    'for_backend' => 'required'
+                ];
+                break;
+
+            case 'PUT':
+                return [
+                    'nama'        => 'required|max:30|regex:/^[a-zA-Z\s]*$/',
+                    'url'         => 'required|max:20|regex:/^[a-z]*$/',
+                    'permissions' => 'required',
+                    'for_backend' => 'required'
+                ];
+                break;
+
+            default:
+                return [];
+                break;
+        }
     }
 
     /**

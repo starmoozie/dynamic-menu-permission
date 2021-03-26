@@ -162,7 +162,7 @@ class MenuCrudController extends CrudController
                 'name'       => 'url',
                 'label'      => __('dynamic_trans::label.route'),
                 'wrapper'    => ['class' => 'form-group col-md-4'],
-                'attributes' => ['required' => 'required', 'pattern' => '[a-z#]+', 'maxlength' => 10],
+                'attributes' => ['required' => 'required', 'pattern' => '[a-z#]+', 'maxlength' => 20],
                 'hint'       => __('dynamic_trans::hint.route_menu')
             ],
             [
