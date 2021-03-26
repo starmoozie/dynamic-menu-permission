@@ -43,7 +43,7 @@ class levelMenuPermissionSeeder extends Seeder
         ],
         [
             'level_id'           => 1,
-            'menu_permission_id' => 8,
+            'menu_permission_id' => 9,
         ],
         [
             'level_id'           => 1,

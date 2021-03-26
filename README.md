@@ -2,6 +2,10 @@
 
 - Dynamic Level based on Menu Permission
 
+## Requirement
+
+- laravel 5 - 6
+
 ## Install
 
 - Composer
