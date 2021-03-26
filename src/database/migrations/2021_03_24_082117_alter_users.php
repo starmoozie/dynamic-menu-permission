@@ -16,7 +16,7 @@ class AlterUsers extends Migration
         \DB::connection()->getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
 
         Schema::table('users', function(Blueprint $table) {
-            $table->integer('level_id')->unsigned()->nullable();
+            $table->integer('level_id')->unsigned()->nullable()->after('password');
         });
     }
 
