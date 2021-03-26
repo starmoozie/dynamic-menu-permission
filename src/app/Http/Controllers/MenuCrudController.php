@@ -7,7 +7,6 @@ use Starmoozie\CRUD\app\Http\Controllers\CrudController;
 use Starmoozie\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 use Starmoozie\DynamicPermission\app\Models\Menu;
-use Starmoozie\DynamicPermission\app\Models\Permission;
 
 /**
  * Class MenuCrudController
@@ -23,6 +22,9 @@ class MenuCrudController extends CrudController
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\ShowOperation;
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\ReorderOperation;
     use \Starmoozie\DynamicPermission\app\Traits\PermissionTrait;
+    use Resources\Fields\MenuFields;
+    use Resources\Columns\MenuColumns;
+    use Resources\Concern\MenuTrait;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -32,11 +34,13 @@ class MenuCrudController extends CrudController
     public function setup()
     {
         $label = __('dynamic_trans::label.menu');
+
         CRUD::setModel(Menu::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . '/menu');
         CRUD::setEntityNameStrings($label, $label);
-        $this->permissionCheck();
         CRUD::addClause('selectList');
+
+        $this->permissionCheck();
     }
 
     /**
@@ -89,105 +93,9 @@ class MenuCrudController extends CrudController
         return $response;
     }
 
-    private function updatePivot()
-    {
-        $entry      = $this->crud->entry;
-        $permission = Permission::selectIdNama(CRUD::getRequest()->permission)->get();
-
-        foreach ($permission as $key => $value) {
-            $pivot[$value->id] = ['alias' => $entry->nama.'-'.$value->nama];
-        }
-
-        return $entry->permission()->sync($pivot);
-    }
-
     protected function setupReorderOperation()
     {
-        // define which model attribute will be shown on draggable elements 
         $this->crud->set('reorder.label', 'nama');
-        // define how deep the admin is allowed to nest the items
-        // for infinite levels, set it to 0
         $this->crud->set('reorder.max_level', 2);
-    }
-
-    private function setupColumns()
-    {
-        CRUD::addColumns([
-            [
-                'name'      => 'parent_id',
-                'label'     => __('dynamic_trans::label.parent'),
-                'type'      => 'select',
-                'entity'    => 'parent',
-                'model'     => 'Stamoozie\DynamicPermission\app\Models\Menu',
-                'attribute' => 'nama'
-            ],
-            [
-                'name'  => 'nama',
-                'label' => __('dynamic_trans::label.name')
-            ],
-            [
-                'name'  => 'url',
-                'label' => __('dynamic_trans::label.route')
-            ],
-            [
-                'name'  => 'for_backend',
-                'label' => __('dynamic_trans::label.backend'),
-                'type'  => 'boolean'
-            ],
-        ]);
-    }
-
-    private function setupFields()
-    {
-        CRUD::addFields([
-            [
-                'name'       => 'nama',
-                'label'      => __('dynamic_trans::label.name'),
-                'wrapper'    => ['class' => 'form-group col-md-4'],
-                'attributes' => ['required' => 'required', 'pattern' => '[a-z A-Z]+', 'maxlength' => 10]
-            ],
-            [
-                'name'                 => 'parent_id',
-                'label'                => __('dynamic_trans::label.parent'),
-                'wrapper'              => ['class' => 'form-group col-md-4'],
-                'type'                 => 'select2_from_ajax',
-                'entity'               => 'parent',
-                'attribute'            => "nama",
-                'data_source'          => starmoozie_url("api/menu-parent"),
-                'placeholder'          => __('dynamic_trans::placeholder.select_parent'),
-                'minimum_input_length' => 0,
-                'hint'                 => __('dynamic_trans::hint.parent_menu')
-            ],
-            [
-                'name'       => 'url',
-                'label'      => __('dynamic_trans::label.route'),
-                'wrapper'    => ['class' => 'form-group col-md-4'],
-                'attributes' => ['required' => 'required', 'pattern' => '[a-z#]+', 'maxlength' => 20],
-                'hint'       => __('dynamic_trans::hint.route_menu')
-            ],
-            [
-                'label'                => __('dynamic_trans::label.permissions'),
-                'type'                 => "select2_from_ajax_multiple",
-                'name'                 => 'permission', 
-                'entity'               => 'permission',
-                'attribute'            => "nama",
-                'data_source'          => starmoozie_url("api/permission"),
-                'pivot'                => true,
-                'model'                => "Starmoozie\DynamicPermission\app\Models\Permission",
-                'placeholder'          => __('dynamic_trans::placeholder.select_permissions'),
-                'minimum_input_length' => 0,
-            ],
-            [
-                'name'    => 'for_backend',
-                'label'   => __('dynamic_trans::label.menu_for'),
-                'type'    => 'radio',
-                'options' => [
-                    0 => __('dynamic_trans::label.frontend'),
-                    1 => __('dynamic_trans::label.backend')
-                ],
-                'inline'  => true,
-                'wrapper' => ['class' => 'form-group col-md-6'],
-            ]
-        ]);
     }
 }

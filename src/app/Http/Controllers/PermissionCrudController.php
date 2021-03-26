@@ -30,9 +30,11 @@ class PermissionCrudController extends CrudController
     public function setup()
     {
         $label = __('dynamic_trans::label.permissions');
+
         CRUD::setModel(Permission::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . '/permission');
         CRUD::setEntityNameStrings($label, $label);
+
         $this->permissionCheck();
     }
 

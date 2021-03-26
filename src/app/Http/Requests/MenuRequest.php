@@ -29,7 +29,7 @@ class MenuRequest extends FormRequest
                 return [
                     'nama'        => 'required|max:30|regex:/^[a-zA-Z\s]*$/',
                     'url'         => 'required|max:20|regex:/^[a-z]*$/',
-                    'permissions' => 'required',
+                    'permission'  => 'required',
                     'for_backend' => 'required'
                 ];
                 break;
@@ -38,7 +38,7 @@ class MenuRequest extends FormRequest
                 return [
                     'nama'        => 'required|max:30|regex:/^[a-zA-Z\s]*$/',
                     'url'         => 'required|max:20|regex:/^[a-z]*$/',
-                    'permissions' => 'required',
+                    'permission'  => 'required',
                     'for_backend' => 'required'
                 ];
                 break;
