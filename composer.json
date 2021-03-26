@@ -1,0 +1,36 @@
+{
+    "name": "starmoozie/dynamic-menu-permission",
+    "description": "Dynamic menu permission",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "starmoozie",
+            "email": "starmoozie@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "starmoozie/crud": "*",
+        "starmoozie/crud-generators": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Starmoozie\\DynamicPermission\\": "src"
+        },
+        "classmap": [
+            "src/database/seeds/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Starmoozie\\DynamicPermission\\DynamicPermissionServiceProvider"
+            ]
+        }
+    }
+}
