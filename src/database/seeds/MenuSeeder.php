@@ -10,7 +10,7 @@ class MenuSeeder extends Seeder
 {
     private $menu = [
         [
-            'nama'        => 'pengaturan aplikasi',
+            'nama'        => 'setting',
             'for_backend' => 1,
             'url'         => '#',
             'parent_id'   => null,
@@ -19,7 +19,7 @@ class MenuSeeder extends Seeder
             'depth'       => null
         ],
         [
-            'nama'        => 'manajemen pengguna',
+            'nama'        => 'user management',
             'for_backend' => 1,
             'url'         => '#',
             'parent_id'   => null,
