@@ -12,12 +12,12 @@ class MenuPermissionSeeder extends Seeder
         [
             'menu_id'       => 1,
             'permission_id' => 1,
-            'alias'         => 'Pengaturan Aplikasi-list'
+            'alias'         => 'Setting-list'
         ],
         [
             'menu_id'       => 2,
             'permission_id' => 1,
-            'alias'         => 'Manajemen Pengguna-list'
+            'alias'         => 'User Management-list'
         ],
         [
             'menu_id'       => 3,
