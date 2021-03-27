@@ -11,9 +11,9 @@
                     @foreach ($menu_item->children as $child)
                         <li class="nav-item {{ ($child->url == Request::url()) ? 'active' : '' }}">
                             @if ($child->children->count())
-                                @include('dynamic_view::sub_sidebar_content')
+                                @includeIf('dynamic_view::sub_sidebar')
                             @else
-                            	<a class="nav-link" href="{{ starmoozie_url($child->url) }}"><i class="nav-icon fa fa-user"></i>
+                            	<a class="nav-link" href="{{ starmoozie_url($child->url) }}"><i class="nav-icon la la-circle-o ml-2"></i>
                             		<span>{{ $child->nama }}</span>
                             	</a>
                             @endif
