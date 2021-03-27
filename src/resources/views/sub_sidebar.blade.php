@@ -1,10 +1,14 @@
-<a href="{{ $child->url() }}" class="dropdown-toggle" data-toggle="dropdown">
-    {{ $child->name }} <span class="caret"></span>
-</a>
-<ul class="dropdown-menu">
+<li class="nav-item nav-dropdown">
+	<a class="nav-link nav-dropdown-toggle" href="{{ $child->url }}"><i class="nav-icon la la-th-list ml-2"></i> {{ $child->nama }}</a>
     @foreach ($child->children as $child)
-        <li class="{{ ($child->url == Request::url()) ? 'active' : '' }}">
-            <a href="{{ $child->url }}">{{ $child->name }}</a>
-        </li>
+        <ul class="nav-dropdown-items">
+            <li class="nav-item {{ ($child->url == Request::url()) ? 'active' : '' }}">
+                @if($child->children->count())
+                    @includeIf('dynamic_view::sub_sidebar')
+                @else
+                    <a class="nav-link" href="{{ $child->url }}"><i class="nav-icon la la-circle-o ml-4"></i> <span>{{ $child->nama }}</span></a>
+                @endif
+            </li>
+        </ul>
     @endforeach
-</ul>
+</li>
