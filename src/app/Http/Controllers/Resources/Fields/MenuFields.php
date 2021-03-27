@@ -15,7 +15,7 @@ trait MenuFields
                 'name'       => 'nama',
                 'label'      => __('dynamic_trans::label.name'),
                 'wrapper'    => ['class' => 'form-group col-md-4'],
-                'attributes' => ['required' => 'required', 'pattern' => '[a-z A-Z]+', 'maxlength' => 10]
+                'attributes' => ['required' => 'required', 'pattern' => '[a-z A-Z]+', 'maxlength' => 30]
             ],
             [
                 'name'                 => 'parent_id',
