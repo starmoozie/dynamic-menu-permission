@@ -28,7 +28,7 @@ class MenuRequest extends FormRequest
             case 'POST':
                 return [
                     'nama'        => 'required|max:30|regex:/^[a-zA-Z\s]*$/',
-                    'url'         => 'required|max:20|regex:/^[a-z]*$/',
+                    'url'         => 'required|max:20|regex:/^[a-z#]*$/',
                     'permission'  => 'required',
                     'for_backend' => 'required'
                 ];
@@ -37,7 +37,7 @@ class MenuRequest extends FormRequest
             case 'PUT':
                 return [
                     'nama'        => 'required|max:30|regex:/^[a-zA-Z\s]*$/',
-                    'url'         => 'required|max:20|regex:/^[a-z]*$/',
+                    'url'         => 'required|max:20|regex:/^[a-z#]*$/',
                     'permission'  => 'required',
                     'for_backend' => 'required'
                 ];
