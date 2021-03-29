@@ -17,6 +17,7 @@ class CreatePermission extends Migration
             $table->increments('id');
             $table->string('nama', 20)->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

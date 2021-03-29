@@ -18,7 +18,6 @@ class CreateMenuPermission extends Migration
             $table->integer('menu_id')->unsigned();
             $table->integer('permission_id')->unsigned();
             $table->string('alias', 30)->nullable();
-            $table->timestamps();
         });
     }
 
