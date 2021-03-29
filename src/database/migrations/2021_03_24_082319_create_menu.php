@@ -24,6 +24,7 @@ class CreateMenu extends Migration
             $table->integer('depth')->unsigned()->nullable();
             $table->json('permissions')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -17,7 +17,7 @@ class MenuPermission extends Model
 
     protected $table = 'menu_permission';
     // protected $primaryKey = 'id';
-    // public $timestamps = false;
+    public $timestamps = false;
     protected $guarded = ['id'];
     protected $fillable = ['menu_id', 'permission_id', 'alias'];
     // protected $hidden = [];

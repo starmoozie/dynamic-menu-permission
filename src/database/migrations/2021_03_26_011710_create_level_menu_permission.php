@@ -17,7 +17,6 @@ class CreateLevelMenuPermission extends Migration
             $table->increments('id');
             $table->integer('menu_permission_id')->unsigned();
             $table->integer('level_id')->unsigned();
-            $table->timestamps();
         });
     }
 

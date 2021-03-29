@@ -4,10 +4,11 @@ namespace Starmoozie\DynamicPermission\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Starmoozie\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Permission extends Model
 {
-    use CrudTrait;
+    use CrudTrait, SOftDeletes;
 
     /*
     |--------------------------------------------------------------------------

@@ -17,7 +17,7 @@ class LevelMenuPermission extends Model
 
     protected $table = 'level_menu_permission';
     // protected $primaryKey = 'id';
-    // public $timestamps = false;
+    public $timestamps = false;
     protected $guarded = ['id'];
     protected $fillable = ['level_id', 'menu_permission_id'];
     // protected $hidden = [];
