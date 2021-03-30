@@ -20,13 +20,15 @@ class UserSeeder extends Seeder
                 'nama'     => 'root',
                 'email'    => 'root@mail.com',
                 'password' => bcrypt('rahasi4dong'),
-                'level_id' => 1
+                'level_id' => 1,
+                'nip'      => '085476400500'
             ],
             [
                 'nama'     => 'admin',
                 'email'    => 'admin@mail.com',
                 'password' => bcrypt('password'),
-                'level_id' => null
+                'level_id' => null,
+                'nip'      => '082385400500'
             ],
         ];
 
