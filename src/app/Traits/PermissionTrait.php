@@ -30,7 +30,7 @@ trait PermissionTrait
                 }
             }
 
-            if (empty(array_intersect(['show', 'delete', 'update'], $permission))) { // if permission haven't button in line, then remove action column
+            if (isset($permission) && empty(array_intersect(['show', 'delete', 'update'], $permission))) { // if permission haven't button in line, then remove action column
                 $this->crud->removeAllButtonsFromStack('line');
             }
         }
