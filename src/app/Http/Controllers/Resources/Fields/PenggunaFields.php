@@ -13,15 +13,21 @@ trait PenggunaFields
             [
                 'name'  => 'nama',
                 'label' => __('dynamic_trans::label.name'),
-                'wrapper'    => ['class' => 'form-group col-md-6'],
+                'wrapper'    => ['class' => 'form-group col-md-4'],
                 'attributes' => ['required' => 'required', 'pattern' => '[a-z A-Z]+', 'maxlength' => 50]
             ],
             [
                 'name'  => 'email',
                 'label' => __('dynamic_trans::label.email'),
                 'type'  => 'email',
-                'wrapper'    => ['class' => 'form-group col-md-6'],
+                'wrapper'    => ['class' => 'form-group col-md-4'],
                 'attributes' => ['required' => 'required', 'maxlength' => 40]
+            ],
+            [
+                'name'  => 'nip',
+                'label' => __('dynamic_trans::label.nip'),
+                'wrapper'    => ['class' => 'form-group col-md-4'],
+                'attributes' => ['required' => 'required', 'maxlength' => 30]
             ],
             [
                 'name'  => 'password',

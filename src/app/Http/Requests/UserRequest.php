@@ -28,6 +28,7 @@ class UserRequest extends FormRequest
             case 'POST':
                 return [
                     'email'    => 'required|email|unique:users,email|max:40',
+                    'nip'      => 'required|unique:users,nip|max:30',
                     'nama'     => 'required|max:50|regex:/^[a-zA-Z\s]*$/',
                     'password' => 'required|confirmed|min:8',
                 ];
@@ -39,6 +40,7 @@ class UserRequest extends FormRequest
 
                 return [
                     'email'    => 'required|email|max:40|unique:users,email,'.$id,
+                    'nip'      => 'required|max:30|unique:users,nip,'.$id,
                     'nama'     => 'required|regex:/^[a-zA-Z\s]*$/',
                     'password' => 'confirmed',
                 ];
