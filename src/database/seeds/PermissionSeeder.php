@@ -43,6 +43,9 @@ class PermissionSeeder extends Seeder
             [
                 'nama' => 'print'
             ],
+            [
+                'nama' => 'personal'
+            ]
         ];
 
         foreach ($data as $value) {
