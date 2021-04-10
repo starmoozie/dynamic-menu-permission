@@ -35,6 +35,10 @@ trait PermissionTrait
             }
         }
 
+        if (isset($permission) && in_array('personal', $permission)) {
+            $this->crud->addClause('whereUserId', starmoozie_user()->id);
+        }
+
         $this->crud->allowAccess($permission ??= []); // Allowed user access by level
     }
 }
