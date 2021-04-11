@@ -39,6 +39,12 @@ trait PermissionTrait
             $this->crud->addClause('whereUserId', starmoozie_user()->id);
         }
 
+        if (isset($permission) && in_array('approval', $permission)) {
+            $this->crud->addButtonFromView('line', 'show_pengajuan', 'show_pengajuan', 'beginning');
+            $this->crud->addButtonFromView('line', 'approval', 'approval', 'beginning');
+            $this->crud->removeButton('show');
+        }
+
         $this->crud->allowAccess($permission ??= []); // Allowed user access by level
     }
 }
