@@ -17,7 +17,7 @@ use App\User;
 class PenggunaCrudController extends CrudController
 {
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Starmoozie\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Starmoozie\CRUD\app\Http\Controllers\Operations\CreateOperation { store as traitStore; }
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as traitUpdate; }
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Starmoozie\CRUD\app\Http\Controllers\Operations\ShowOperation;
@@ -85,6 +85,20 @@ class PenggunaCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    /**
+     * Store the specified resource in the database.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store()
+    {
+        $this->crud->setRequest($this->crud->validateRequest());
+        $this->crud->setRequest($this->handlePasswordInput($this->crud->getRequest()));
+        $this->crud->unsetValidation();
+
+        return $this->traitStore();
     }
 
     /**
